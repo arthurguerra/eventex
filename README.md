@@ -2,6 +2,9 @@
 
 App created for handling events.
 
+[![Build Status](https://travis-ci.org/arthurguerra/eventex.svg?branch=master)](https://travis-ci.org/arthurguerra/eventex)
+[![Code Health](https://landscape.io/github/arthurguerra/eventex/master/landscape.svg?style=flat)](https://landscape.io/github/arthurguerra/eventex/master)
+
 ## Developer
 
 1. Clone github repository
