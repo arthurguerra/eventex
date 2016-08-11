@@ -18,7 +18,7 @@ App created for handling events.
 git clone git@github.com:arthuguerra/eventex.git wttd
 python -m venv .wttd
 source .wttd/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 cp contrib/envsample .env
 python manage.py test
 ```
