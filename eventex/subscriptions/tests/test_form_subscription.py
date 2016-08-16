@@ -31,6 +31,24 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_form(name='ARTHUR Guerra')
         self.assertEqual('Arthur Guerra', form.cleaned_data['name'])
 
+    def test_email_is_optional(self):
+        """Email is an optional field"""
+        form = self.make_validated_form(email='')
+        self.assertFalse(form.errors)
+
+    def test_phone_is_optiona(self):
+        """Phone is an optional field"""
+        form = self.make_validated_form(phone='')
+        self.assertFalse(form.errors)
+
+    def test_must_inform_email_or_phone(self):
+        """Either one email or phone must be provided"""
+        form = self.make_validated_form(email='', phone='')
+
+        # __all__ eh um erro do formulario, quando nem email nem telephone sao
+        # informados, nao eh erro de nenhum dos campos, eh erro do form
+        self.assertListEqual(['__all__'], list(form.errors))
+
     def assertFormErrorMessage(self, form, field, msg):
         self.assertListEqual([msg], form.errors[field])
 
