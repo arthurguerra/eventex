@@ -7,6 +7,7 @@ class Subscription(models.Model):
     email = models.EmailField(verbose_name='Mail')
     phone = models.CharField(max_length=20, verbose_name='Telephone #')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created Date')
+    paid = models.BooleanField(default=False, verbose_name='Pago')
 
     class Meta:
         verbose_name_plural = 'subscriptions_eventex'
