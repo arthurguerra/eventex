@@ -46,7 +46,8 @@ class Contact(models.Model):
         return self.value
 
 
-class Talk(models.Model):
+# abstract model
+class Activity(models.Model):
     title = models.CharField(max_length=200, verbose_name='titulo')
     start = models.TimeField(verbose_name='inicio', blank=True, null=True)
     description = models.TextField(verbose_name='descricao', blank=True)
@@ -55,8 +56,21 @@ class Talk(models.Model):
     objects = PeriodManager()
 
     class Meta:
+        abstract = True  # key for Django not create Activity in the DB
         verbose_name = 'palestra'
         verbose_name_plural = 'palestras'
 
     def __str__(self):
         return self.title
+
+
+class Talk(Activity):
+    pass
+
+
+class Course(Activity):
+    slots = models.IntegerField()
+
+    class Meta:
+        verbose_name = 'curso'
+        verbose_name_plural = 'cursos'
