@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import resolve_url as r
+from eventex.core.managers import KindContactManager
 
 
 class Speaker(models.Model):
@@ -33,6 +34,9 @@ class Contact(models.Model):
     speaker = models.ForeignKey('Speaker', verbose_name='Palestrante')
     kind = models.CharField('tipo', max_length=1, choices=KINDS)
     value = models.CharField('valor', max_length=255)
+
+    # Creating custom models manager
+    objects = KindContactManager()
 
     class Meta:
         verbose_name = 'contato'
