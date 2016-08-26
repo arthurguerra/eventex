@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from eventex.core.models import Speaker, Talk, Course
+from django.views.generic import View
+from eventex.core.models import Speaker, Talk
 
 
-def home(request):
-    speakers = Speaker.objects.all()
-
-    return render(request, 'index.html', {'speakers': speakers})
+class HomeView(View):
+    def get(self, *args, **kwargs):
+        speakers = Speaker.objects.all()
+        return render(self.request, 'index.html', {'speakers': speakers})
 
 
 def speaker_detail(request, slug):
