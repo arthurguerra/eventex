@@ -3,10 +3,8 @@ from django.views.generic import ListView
 from eventex.core.models import Speaker, Talk
 
 
-class HomeView(ListView):
-    template_name = 'index.html'
-    model = Speaker
-
+home = ListView.as_view(template_name='index.html',
+                        model=Speaker)
 
 def speaker_detail(request, slug):
     speaker = get_object_or_404(Speaker, slug=slug)
