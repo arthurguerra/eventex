@@ -1,5 +1,5 @@
-from django.test import TestCase
 from django.shortcuts import resolve_url as r
+from django.test import TestCase
 from eventex.core.models import Talk, Speaker, Course
 
 
@@ -12,7 +12,7 @@ class TalkListGet(TestCase):
                                  description='Descricao da palestra')
 
         c1 = Course.objects.create(title='Titulo do Curso', start='09:00',
-                                   description='Descricao do Curso', slots=20)
+                                      description='Descricao do Curso', slots=20)
 
         speaker = Speaker.objects.create(name='Arthur Guerra', slug='arthur-guerra',
                                          website='http://arthurguerra.com')

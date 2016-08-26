@@ -47,7 +47,7 @@ class Contact(models.Model):
 
 
 # abstract model
-class Activity(models.Model):
+class Talk(models.Model):
     title = models.CharField(max_length=200, verbose_name='titulo')
     start = models.TimeField(verbose_name='inicio', blank=True, null=True)
     description = models.TextField(verbose_name='descricao', blank=True)
@@ -56,7 +56,7 @@ class Activity(models.Model):
     objects = PeriodManager()
 
     class Meta:
-        abstract = True  # key for Django not create Activity in the DB
+        ordering = ['start']
         verbose_name = 'palestra'
         verbose_name_plural = 'palestras'
 
@@ -64,13 +64,23 @@ class Activity(models.Model):
         return self.title
 
 
-class Talk(Activity):
-    pass
+class Course(Talk):
+    '''
+    Course would inherit from Talk. Then, any Course is a Talk, but a Talk is not a Course.
 
+    * This change would make Django drop the old Course table (losing all data already entered in the DB),
+    * so we need to apply specific migrations to keep the data that is already in the DB and use the new
+    * relationship between Talk and Course.
 
-class Course(Activity):
+    * With this class commented, we need to make a new migration, so Django will detect a name change from Course to
+    * CourseOld.
+    '''
+
     slots = models.IntegerField()
+
+    objects = PeriodManager()
 
     class Meta:
         verbose_name = 'curso'
         verbose_name_plural = 'cursos'
+
